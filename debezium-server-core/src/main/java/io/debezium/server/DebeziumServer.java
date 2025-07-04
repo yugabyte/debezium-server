@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.debezium.DebeziumException;
+import io.debezium.embedded.Connect;
 import io.debezium.embedded.async.ConvertingAsyncEngineBuilderFactory;
 import io.debezium.engine.ChangeEvent;
 import io.debezium.engine.DebeziumEngine;
@@ -227,6 +228,9 @@ public class DebeziumServer {
         }
         else if (FORMAT_STRING.equals(formatName)) {
             return SimpleString.class;
+        }
+        else if ("connect".equals(formatName)) {
+            return Connect.class;
         }
         throw new DebeziumException("Unknown format '" + formatName + "' for option " + "'" + property + "'");
     }
